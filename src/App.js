@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import './App.css';
 import building from './JSON/building.json';
 import road from './JSON/road.json';
-// import building from './JSON/roadTest.json';
-// import road from './JSON/bTest.json';
 
 import Initial from './Components/Initial';
 import Building from './Components/Building';

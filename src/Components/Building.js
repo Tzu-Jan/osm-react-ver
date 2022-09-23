@@ -1,15 +1,16 @@
 import * as THREE from 'three';
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils';
 import { onClickMove } from './infoSelect'
+import { Position } from './Position';
 
 export default class Building{
-    constructor(buildingData){
+    constructor(buildingData,center,adjFactor){
         this.buildingData = buildingData
         // console.log(this.buildingData.length);
     
         //this.center = [103.847,1.283];
         //this.center = [126.9774192,37.5665521]
-        this.center = [103.8496307,1.283635]
+        this.center = center 
         
         this.materialBuilding = undefined;
         
@@ -17,7 +18,7 @@ export default class Building{
         this.colliderBuilding = [];
         this.iR = undefined;
 
-        this.adjFactor = 1000;
+        this.adjFactor = adjFactor;
 
         this.raycaster = new THREE.Raycaster();
         this.pointer = new THREE.Vector2();
@@ -69,7 +70,7 @@ export default class Building{
             depth: 0.05*levels,
             bevelEnabled: false,
           });
-        geometry.rotateX(Math.PI / 2)
+        geometry.rotateX(Math.PI /2)
         geometry.rotateZ(Math.PI)
 
         this.geoBuildings.push(geometry);
@@ -88,7 +89,7 @@ export default class Building{
         const shape = new THREE.Shape();
         points.forEach((point, index)=>{
             
-            point = this.position(point,center);
+            point = Position(point,center,this.adjFactor);
             if(index===0){
                  shape.moveTo(point[0], point[1])
             }else{
@@ -104,13 +105,6 @@ export default class Building{
         return geometry;
     }
 
-    position(dataPoint, center){
-        
-        const x = dataPoint[0]-center[0];
-        const y = dataPoint[1]-center[1];
-
-        return [ -x * this.adjFactor , y * this.adjFactor ]
-    }
     genHelper(geometry){
         if(!geometry.boundingBox){
             geometry.computeBoundingBox();

@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { Position } from './Position';
-//import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils';
 
 export default class Road{
 constructor(roadData, center, adjFactor){
@@ -23,8 +22,7 @@ addRoad(){
         (item)=>{
          this.genRoad(item.geometry.coordinates)
     })
-
-   //const mergeGeometry = BufferGeometryUtils.mergeBufferGeometries(this.geoRoads)
+    // this.iR.layers.set(1)
 
    return this.iR;
 
@@ -51,13 +49,11 @@ genRoad(coordinates){
     let geometry = new THREE.BufferGeometry().setFromPoints(points)
     geometry.rotateZ(Math.PI);
 
-    //this.geoRoads.push(geometry);
-    let line = new THREE.Line(geometry, this.materialRoad)
-    
-    //let line = new THREE.Line(mergeGeometry, this.materialRoad)
-    this.iR.add(line)
+    this.geoRoads.push(geometry);
 
-    
+    let line = new THREE.Line(geometry, this.materialRoad)
+    line.layers.set(1)
+    this.iR.add(line)
 
 }
 }

@@ -35,13 +35,13 @@ export default class Building{
                 item.properties, 
                 item.properties['building:levels'])
         })
-        // console.log(this.buildingData.length);
        
         const mergeGeometry = BufferGeometryUtils.mergeBufferGeometries(this.geoBuildings)
         const mesh = new THREE.Mesh(mergeGeometry, this.materialBuilding)
+        mesh.layers.set(0);
         this.iR.add(mesh)
 
-        document.body.addEventListener('click', (e) => onClickMove(e, this.pointer, this.raycaster, this.colliderBuilding, camera))
+        document.body.addEventListener('dblclick', (e) => onClickMove(e, this.pointer, this.raycaster, this.colliderBuilding, camera))
 
         return this.iR
     }

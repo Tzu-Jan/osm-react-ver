@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import building from './JSON/building.json';
 import road from './JSON/road.json';
+import { gui } from './Components/infoSelect'
 
 import Initial from './Components/Initial';
 import Building from './Components/Building';
@@ -21,16 +22,15 @@ function App() {
       && item.properties['highway']!=="path");
     
   })
-  // center
-  //improvement needed
   const adjFactor = 1000; 
+
   
   useEffect(() => {
     const center = [103.8496307,1.283635]
     const test = new Initial('myCanvas');
     test.init();
     test.animate();
-    
+
     const buildings = new Building(buildingData, center,adjFactor)
     const buildingGroup =  buildings.addBuildings(test.camera); 
     test.scene.add(buildingGroup)
@@ -38,9 +38,11 @@ function App() {
     const roads = new Road(roadData,center,adjFactor) 
     const RoadGroup = roads.addRoad(); 
     test.scene.add(RoadGroup)
+    
+    gui(test)
 
   },[buildingData, roadData]);
-  
+
   
   return (
     <div className="App">

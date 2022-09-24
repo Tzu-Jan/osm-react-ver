@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 
-
 export default class Initial{
     constructor(canvasId){
 
@@ -26,6 +25,9 @@ export default class Initial{
         this.light0 = undefined;
         this.light1 = undefined;
         this.light2 = undefined;
+
+        // this.layers = undefined
+        // this.gui = undefined
     }
     init(){
         this.scene = new THREE.Scene();
@@ -34,10 +36,17 @@ export default class Initial{
             window.innerWidth / window.innerHeight,
             this.nearPlane,
             this.farPlane);
+
+        this.camera.layers.enable( 0 ); 
+        this.camera.layers.enable( 1 );    
+        
         this.camera.position.z =0;
         this.camera.position.y =4;
         this.camera.position.x =8;
         this.camera.lookAt(this.scene.position);
+        
+
+        this.scene.add(this.camera)
 
         const canvas = document.getElementById(this.canvasId);
         this.renderer = new THREE.WebGLRenderer({
@@ -51,15 +60,26 @@ export default class Initial{
         document.body.appendChild(this.renderer.domElement);
         
         this.light0 = new THREE.AmbientLight(0xfafafa, 0.25)
+        this.light0.layers.enable( 0 );
+        this.light0.layers.enable( 1 );
+
+
         this.light1 = new THREE.PointLight(0xffffff, 0.5)
         this.light1.position.set(200, 90, 40)
+        this.light1.layers.enable( 0 );
+        this.light1.layers.enable( 1 );
+        
         this.light2 = new THREE.PointLight(0xffffff, 0.5)
         this.light2.position.set(200, 90, -40)
-        this.scene.add(this.light0)
-        this.scene.add(this.light1)
-        this.scene.add(this.light2)
+        this.light2.layers.enable( 0 );
+        this.light2.layers.enable( 1 );
+
+        this.camera.add(this.light0)
+        this.camera.add(this.light1)
+        this.camera.add(this.light2)
 
         this.axesHelper = new THREE.AxesHelper(1000);
+        this.axesHelper.layers.set(2)
         this.scene.add(this.axesHelper);
         this.gh = new THREE.GridHelper(
           60,
@@ -67,6 +87,7 @@ export default class Initial{
           new THREE.Color(0x555555),
           new THREE.Color(0x222222)
         );
+        this.gh.layers.set(2)
         this.scene.add(this.gh);
 
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);

@@ -38,7 +38,7 @@ export default class Building{
        
         const mergeGeometry = BufferGeometryUtils.mergeBufferGeometries(this.geoBuildings)
         const mesh = new THREE.Mesh(mergeGeometry, this.materialBuilding)
-        mesh.layers.set(0);
+        mesh.layers.set(2);
         this.iR.add(mesh)
 
         document.body.addEventListener('dblclick', (e) => onClickMove(e, this.pointer, this.raycaster, this.colliderBuilding, camera))

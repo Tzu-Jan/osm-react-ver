@@ -28,13 +28,13 @@ export function lockOn(pointer, raycaster, colliderBuilding, camera)
 
 export function gui(test){
     const layers = {
-        'Building': function () {
+      'Axis and grid': function () {
           test.camera.layers.toggle(0);
         },
         'Road': function () {
           test.camera.layers.toggle(1);
         },
-        'Axis and grid': function () {
+        'Building': function () {
           test.camera.layers.toggle(2);
         },      
         'Enable All': function () {
@@ -45,10 +45,10 @@ export function gui(test){
         },
       }
   
-      const gui = new GUI({ width: 310 });
-      gui.add( layers, 'Building' );
+      const gui = new GUI({ });
+      gui.add( layers, 'Axis and grid');
       gui.add( layers, 'Road' );
-      gui.add(layers, 'Axis and grid');
+      gui.add( layers, 'Building');
       gui.add( layers, 'Enable All' );
       gui.add( layers, 'Disable All' );
 }

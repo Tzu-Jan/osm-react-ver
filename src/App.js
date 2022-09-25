@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import building from './JSON/building.json';
 import road from './JSON/road.json';
 import { gui } from './Components/infoSelect'
@@ -45,9 +44,7 @@ function App() {
 
   
   return (
-    <div className="App">
-    <canvas id="myCanvas"/>
-    </div>
+    <canvas id="myCanvas"></canvas>
   );
 }
 

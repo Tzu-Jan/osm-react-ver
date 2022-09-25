@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/osm-react-ver/static/js/main.fb3f3a18.js",
+    "static/js/787.784a0290.chunk.js": "/osm-react-ver/static/js/787.784a0290.chunk.js",
+    "index.html": "/osm-react-ver/index.html",
+    "main.fb3f3a18.js.map": "/osm-react-ver/static/js/main.fb3f3a18.js.map",
+    "787.784a0290.chunk.js.map": "/osm-react-ver/static/js/787.784a0290.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.fb3f3a18.js"
+  ]
+}
